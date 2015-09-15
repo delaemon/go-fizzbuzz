@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 	"strconv"
 )
 
 func main() {
+	rand.Seed(time.Now().UnixNano())
 	for i := 0; i <= 30; i++ {
 		m := make([]byte, 0, 100)
 		m = append(m, strconv.Itoa(i)...)
@@ -15,6 +18,7 @@ func main() {
 		if i%5 == 0 {
 			m = append(m, " buzz"...)
 		}
-		fmt.Println(string(m))
+		c := i % 7 + 1
+		fmt.Printf("\033[3%dm%s\n", c, string(m))
 	}
 }
